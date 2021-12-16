@@ -1,39 +1,10 @@
-const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var webpack = require('webpack');
+var path = require('path');
 
-const config = {
-  entry: "./src/index.js",
+module.exports = {
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
-    publicPath: 'build/'
-  },
-  module: {
-    rules: [
-      {
-        use: "babel-loader",
-        test: /\.js$/,
-      },
-      {
-        test: /\.css$/i,
-        loader: ExtractTextPlugin.extract({
-          loader: "css-loader",
-        }),
-        // use: ["style-loader", "css-loader"], // order must be same
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        use: [
-          {
-            loader: "url-loader",
-            // options: { limit: 40000 },
-          },
-          "image-webpack-loader",
-        ],
-      },
-    ],
-  },
-  plugins: [new ExtractTextPlugin("style.css")],
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
+  }
 };
-
-module.exports = config;
